@@ -7,8 +7,10 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + './../'));
+app.use(express.static(path.join(__dirname + './../public')));
+app.use(express.static(path.join(__dirname + './../build')));
 
-app.get('/', (req, res) => res.sendFile(path.resolve(__dirname + '/index.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname + './../splash.html')));
+app.get('/home', (req, res) => res.sendFile(path.join(__dirname + './../home.html')));
 
 app.listen(3000);
