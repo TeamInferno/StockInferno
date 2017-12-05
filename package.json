@@ -1,0 +1,38 @@
+{
+  "name": "stockinferno",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TeamInferno/StockInferno.git"
+  },
+  "author": "TeamInferno",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TeamInferno/StockInferno/issues"
+  },
+  "homepage": "https://github.com/TeamInferno/StockInferno#readme",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "express": "^4.16.2",
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-router-dom": "^4.2.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "nodemon": "^1.12.1",
+    "style-loader": "^0.19.0",
+    "webpack": "^3.8.1"
+  }
+}
