@@ -13,4 +13,9 @@ app.use(express.static(path.join(__dirname + './../build')));
 app.get('/', (req, res) => res.sendFile(path.join(__dirname + './../splash.html')));
 app.get('/home', (req, res) => res.sendFile(path.join(__dirname + './../home.html')));
 
+app.get('/api/stocks/:symbol/:timePeriod', (req, res) => {
+  stockAPIController.getData,
+  console.log()
+})
+
 app.listen(3000);
