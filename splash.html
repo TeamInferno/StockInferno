@@ -26,7 +26,6 @@
 
       // Send login request to server
       function handleSubmit(e) {
-        console.log(e.target.username.value, e.target.password.value); 
         fetch('/api/login', {
           method: 'POST',
           headers: new Headers({
@@ -38,9 +37,12 @@
           })
         })
         .then((res) => {
-          if (res.status !== 200) {
+          if (res.status !== 200) {           
             window.location.assign('/signup');
           } else {
+            res.json().then((data) => {
+              window.localStorage.setItem('name', data.user.name);
+            });
             window.location.assign('/home');
           }
         });

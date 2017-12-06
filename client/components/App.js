@@ -7,7 +7,7 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      user: 'Warren Likes Buffets',
+      user: '',
       stocks: [
         { symbol: 'AAPL',
           open: 220,
@@ -27,6 +27,10 @@ class App extends React.Component {
       ]
     }
   }
+  componentDidMount() {
+    this.setState({ user: window.localStorage.getItem('name') });
+  }
+
   render() {
     return (
       <div>

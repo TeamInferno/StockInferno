@@ -41,6 +41,9 @@
           if (res.status !== 200) {
             window.location.assign('/signup');
           } else {
+            res.json().then((data) => {
+              window.localStorage.setItem('name', data.user.name);
+            });
             window.location.assign('/home');
           }
         });

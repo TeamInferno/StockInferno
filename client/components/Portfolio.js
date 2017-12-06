@@ -4,7 +4,7 @@ import StockList from './StockList';
 
 const Portfolio = (props) => (
   <div>
-    <h2>Hello Portfolio</h2>
+    <h2>Portfolio</h2>
     <StockList stocks={props.stocks} />
   </div>
 );

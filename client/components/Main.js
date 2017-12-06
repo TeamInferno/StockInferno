@@ -5,8 +5,7 @@ import Graph from './Graph';
 import {Controller} from 'react-materialize'
 
 const Main = (props) => (
-  <div id="main">
-      
+  <div id="main">     
       <Switch>
         <Route exact path='/home' render={() => (<Portfolio stocks={props.stocks} />)} />
         <Route path='/graph' component={Graph}/>
