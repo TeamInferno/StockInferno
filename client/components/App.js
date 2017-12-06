@@ -1,14 +1,39 @@
 import React from 'react';
-import { Switch, Route, Link } from 'react-router-dom';
 import Header from './Header';
 import Main from './Main';
+import {Container} from 'react-materialize';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      user: 'Warren Likes Buffets',
+      stocks: [
+        { symbol: 'AAPL',
+          open: 220,
+          close: 222.5,
+          time: ''
+        },
+        { symbol: 'MSFT',
+          open: 120.25,
+          close: 115.75,
+          time: ''
+        },
+        { symbol: 'LUV',
+          open: 59.5,
+          close: 53.25,
+          time: ''
+        }
+      ]
+    }
+  }
   render() {
     return (
       <div>
-        <Header />
-        <Main />
+        <Container>
+          <Header user={this.state.user}/>
+          <Main stocks={this.state.stocks} />
+        </Container>
       </div>
     );
   }
