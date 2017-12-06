@@ -6,3 +6,9 @@ body {
 .profilePic {
   width: 100px;
 }
+
+.stock {
+  border: black solid 1px;
+  margin-bottom: 20px;
+  padding-left: 50px;
+}
