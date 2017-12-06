@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 
-const userController = require('./userController')
+const userController = require('./userController');
+const stockController = require('./stockController')
 
 const app = express();
 // const router = express.Router();
@@ -32,6 +33,14 @@ app.post('/api/signup',
   (req, res) => {
     console.log('Redirecting to home');
     res.status(200).send({ user: res.locals.user });
+  }
+);
+
+app.post('api/addstock',
+  stockController.addStock,
+  (req, res) => {
+    const details = res.locals.stockInfo;
+    res.status(200).json({ symbol: res.locals.symbol, open: details.open, close: details.close});
   }
 );
 
