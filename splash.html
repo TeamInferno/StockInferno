@@ -6,9 +6,38 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   </head>
   <body>
-    <div id="main"></div>
-    <a href="/home">Login Here</a>
-    <a href="/signup">Sign Up</a>
-  
+    <div style="margin: 100px auto; max-width: 500px" id="main">
+      <div class="container">
+        <form id="login" action="submit">
+          <h3>Log In</h3>
+          <label for="name">Username</label>
+          <input name="username" type="text" />
+          <label for="password">Password</label>
+          <input name="password" type="text" />
+          <button type="submit">Log In</button>
+        </form>
+        <p>Don't have an account? <a href="/signup">Sign Up</a> </p>
+      </div>
+    </div>
+    
+
+    <script>
+
+      // Send login request to server
+      function handleSubmit(e) {
+        e.preventDefault();
+        fetch('/api/login', {
+          method: 'POST',
+          body: JSON.stringify({
+            username: e.target.username.value,
+            password: e.target.password.value,
+          })
+        })    
+      }
+
+      const loginForm = document.getElementById('login');
+      loginForm.addEventListener('submit', handleSubmit);
+
+    </script>
   </body>
   </html>
