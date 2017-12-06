@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
   </head>
   <body>
+    <!-- <img style="width: 200px; height: 200px;" src="img/logo.svg" alt=""> -->
     <div style="margin: 100px auto; max-width: 500px" id="main">
       <div class="container">
         <form id="login" action="submit">
@@ -13,7 +14,7 @@
           <label for="name">Username</label>
           <input name="username" type="text" />
           <label for="password">Password</label>
-          <input name="password" type="text" />
+          <input name="password" type="password" />
           <button type="submit">Log In</button>
         </form>
         <p>Don't have an account? <a href="/signup">Sign Up</a> </p>
@@ -25,14 +26,25 @@
 
       // Send login request to server
       function handleSubmit(e) {
-        e.preventDefault();
+        console.log(e.target.username.value, e.target.password.value); 
         fetch('/api/login', {
           method: 'POST',
+          headers: new Headers({
+		        'Content-Type': 'application/json'
+	        }),
           body: JSON.stringify({
             username: e.target.username.value,
             password: e.target.password.value,
           })
-        })    
+        })
+        .then((res) => {
+          if (res.status !== 200) {
+            window.location.assign('/signup');
+          } else {
+            window.location.assign('/home');
+          }
+        });
+        e.preventDefault();  
       }
 
       const loginForm = document.getElementById('login');

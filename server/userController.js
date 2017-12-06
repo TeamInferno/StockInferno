@@ -8,9 +8,9 @@ const userController = {}
 userController.getUser = (req, res, next) => {
   db.query('SELECT * FROM users WHERE username = $1', [req.body.username])
     .then(result => {
-      // Attach to returned user res.locals for validation in other middleware
+      console.log('getUser request body:', req.body)
       res.locals.user = result.rows[0];
-      db.end();
+      // db.end();
       next();
     })
     .catch(err => console.error('Error getting user', err.stack));
@@ -18,8 +18,9 @@ userController.getUser = (req, res, next) => {
 
 userController.validateUser = (req, res, next) => {
   const user = res.locals.user;
-  if (!user || !(bcrypt.compareSync(req.user.password, user.password))) {
-    res.status(401).redirect('/signup');
+  if (!user || !(bcrypt.compareSync(req.body.password, user.password))) {
+    console.log('validateUser redirecting to signup');
+    res.status(401).end();
   } else {
     res.locals.sessionId = user._id;
     next();
@@ -28,11 +29,12 @@ userController.validateUser = (req, res, next) => {
 
 userController.createUser = (req, res, next) => {
   const password = bcrypt.hashSync(req.body.password, SALT_WORK_FACTOR);
+  console.log(req.body, password);
   db.query('INSERT INTO users (name, username, password) VALUES ($1, $2, $3)',
     [req.body.name, req.body.username, password])
     .then(result => {
       console.log(result);
-      db.end();
+      // db.end();
       next();
     })
     .catch(err => console.error('Error creating user', err.stack));
