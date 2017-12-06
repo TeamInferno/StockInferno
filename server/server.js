@@ -22,8 +22,8 @@ app.post('/api/login',
   userController.getUser,
   userController.validateUser,
   (req, res) => {
-    console.log('Redirecting to home');
-    res.status(200).end();
+    console.log('Redirecting to home', res.locals.user);
+    res.status(200).send({ user: res.locals.user });
   }
 );
 
@@ -31,7 +31,7 @@ app.post('/api/signup',
   userController.createUser,
   (req, res) => {
     console.log('Redirecting to home');
-    res.status(200).end();
+    res.status(200).send({ user: res.locals.user });
   }
 );
 
