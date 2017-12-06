@@ -2,10 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import StockList from './StockList';
 
-const Portfolio = () => (
+const Portfolio = (props) => (
   <div>
     <h2>Hello Portfolio</h2>
-    <StockList />
+    <StockList stocks={props.stocks} />
   </div>
 );
 

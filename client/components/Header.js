@@ -1,12 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Nav from './Nav';
+import Profile from './Profile';
+import Search from './Search';
+import {Button, Input, Row, Col, Container} from 'react-materialize';
 
-const Header = () => (
+const Header = (props) => (
   <div>
-    <h1>Hello Header</h1>
-    <p>Has username, log out button, nav bar and maybe search button</p>
-    <Nav />
+    <Row>
+      <Nav />
+    </Row>
+    <Row>
+    <Col s={9}>
+        <Search />
+      </Col>
+      <Col s={3}>
+        <Profile user={props.user}/>
+      </Col>
+    </Row>
   </div>
 )
 
