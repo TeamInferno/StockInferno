@@ -18,19 +18,20 @@ app.get('/home', (req, res) => res.sendFile(path.join(__dirname + './../home.htm
 
 
 //** Login/Signup API Routes **************************************/
-app.post('api/login',
+app.post('/api/login',
   userController.getUser,
   userController.validateUser,
   (req, res) => {
-    console.log(req.body.username, req.body.password);
-    res.status(200).redirect('/home')
+    console.log('Redirecting to home');
+    res.status(200).end();
   }
 );
 
-app.post('api/signup',
+app.post('/api/signup',
   userController.createUser,
   (req, res) => {
-    res.status(200).redirect('/home')
+    console.log('Redirecting to home');
+    res.status(200).end();
   }
 );
 

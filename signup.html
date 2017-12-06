@@ -10,10 +10,12 @@
       <div class="container">
         <form action="signup" id="signup">
           <h3>Sign Up</h3>
-          <label for="name">Username</label>
+          <label for="name">Name</label>
+          <input name="name" type="text" />
+          <label for="username">Username</label>
           <input name="username" type="text" />
           <label for="password">Password</label>
-          <input name="password" type="text" />
+          <input name="password" type="password" />
           <button type="submit">Sign Up</button>
           <p>Already have an account? <a href="/">Login</a></p>
         </form>
@@ -22,16 +24,27 @@
 
     <script>
         
-      // Send login request to server
-      function handleSubmit(e) {
-        e.preventDefault();
+      // Send signup request to server
+      function handleSubmit(e) { 
         fetch('/api/signup', {
           method: 'POST',
+          headers: new Headers({
+		        'Content-Type': 'application/json'
+	        }),
           body: JSON.stringify({
+            name: e.target.name.value,
             username: e.target.username.value,
             password: e.target.password.value,
           })
-        })    
+        })
+        .then((res) => {
+          if (res.status !== 200) {
+            window.location.assign('/signup');
+          } else {
+            window.location.assign('/home');
+          }
+        });
+        e.preventDefault();   
       }
 
       const signupForm = document.getElementById('signup');
