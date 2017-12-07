@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './App.css';
+//import'/App.css';
 import ChartistGraph from 'react-chartist'
 
 var stock = "ADBE"
