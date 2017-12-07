@@ -31,7 +31,7 @@ stockController.addStock = (req, res, next) => {
     `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`,
   )
 
-  // Parse data 
+  // Parse data with daily open and close
   .then(apiRes => {
     const dataPoints = [];
     const data = apiRes.data['Time Series (Daily)'];
