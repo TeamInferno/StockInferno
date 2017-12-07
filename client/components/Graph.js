@@ -3,12 +3,11 @@ import { Link } from 'react-router-dom';
 //import'/App.css';
 import ChartistGraph from 'react-chartist'
 
-var stock = "ADBE"
-const API = "TNZ30MMRG0RXZHPZ"
-             
-let url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="+stock+"&interval=15min&apikey="+API
-let globalData;
 
+let globalData;
+const API = "TNZ30MMRG0RXZHPZ"
+var stock;
+//let url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="+stock+"&interval=15min&apikey="+API
 var simpleLineChartData = {
   labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
   series: [
@@ -17,10 +16,11 @@ var simpleLineChartData = {
     [1, 3, 4, 5, 6]
   ]
 }
-
-class Graph extends Component {
+class Graph extends React.Component {
   constructor(props) {
     super(props);
+    //var stock = props.match.params.symbol
+
     this.state = {
       labels: [
 
@@ -29,11 +29,22 @@ class Graph extends Component {
         [
           
         ]
-      ]
+      ],
+      
+       stock: props.match.params.symbol
+      
     };
   }
 
   componentDidMount(){
+    var url = '';
+    if(this.props.match.params){
+      var stk = this.props.match.params.symbol;
+      this.setState({stock: stk})
+      url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol="+stk+"&interval=15min&apikey="+API
+      
+    }
+
     fetch(url)
     .then((resp) => resp.json())
     .then((data) => {
@@ -45,8 +56,12 @@ class Graph extends Component {
                 foo[0].unshift({x:Date.parse(key), y:parseFloat(globalData[key]['1. open'])})      
               }
               this.setState({series: foo, labels: label})
+              // console.log("*************",foo[0])
+               console.log("*************",this.props.match.params.symbol)
+              // console.log("*************",this.state.stock)
             })
           }
+
 
           render() {
             return (
