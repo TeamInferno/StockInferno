@@ -9,6 +9,7 @@ class App extends React.Component {
     super();
     this.state = {
       user: '',
+      username: '',
       search: '',
       stocks: [
         { symbol: 'AAPL',
@@ -28,24 +29,30 @@ class App extends React.Component {
         }
       ]
     }
+    // this.goToGraph = this.goToGraph.bind(this);
     this.addStock = this.addStock.bind(this);
   }
   componentDidMount() {
-    this.setState({ user: window.localStorage.getItem('name') });
+    this.setState({ 
+      user: window.localStorage.getItem('name'),
+      username: window.localStorage.getItem('username'),
+    });
   }
 
   addStock(e) {
     e.preventDefault();
     const symbols = this.state.stocks.map(el => el.symbol);
 
-    if (symbols.indexOf(e.target.symbol) === -1) {
-      let newStocks = this.state.stocks.slice().concat({symbol: e.target.symbol.value.toUpperCase()});
-      this.setState({ stocks: newStocks });
-      axios.post('/api/addstock', { symbol: e.target.symbol.value.toUpperCase(), username: this.state.username })
+    if (symbols.indexOf(e.target.symbol.value) === -1) {
+      const symbol = e.target.symbol.value;
+      let newStocks = this.state.stocks.slice().concat({symbol: symbol.toUpperCase()});
+      // this.setState({ stocks: newStocks });
+      axios.post('/api/addstock', { symbol: symbol.toUpperCase(), username: this.state.username })
       .then((res) => {
-        let response = JSON.parse(res);
-        let newStocks = this.state.stocks.slice().push({ symbol: e.target.symbol.value.toUpperCase(),
-        open: response.open, close: response.close });
+
+        let newStocks = this.state.stocks.slice().concat({ symbol: symbol.toUpperCase(),
+        open: res.data.open, close: res.data.close });
+        console.log(newStocks);
         this.setState({ stocks: newStocks });
       });
     }

@@ -36,7 +36,7 @@ app.post('/api/signup',
   }
 );
 
-app.post('api/addstock',
+app.post('/api/addstock',
   stockController.addStock,
   (req, res) => {
     const details = res.locals.stockInfo;
@@ -47,7 +47,7 @@ app.post('api/addstock',
 //** Stock API Routes *********************************************/
 app.get('/api/stocks/:symbol/:timePeriod', (req, res) => {
   stockAPIController.getData,
-  console.log()
+  console.log();
 })
 
 app.listen(3000);

@@ -42,6 +42,7 @@
           } else {
             res.json().then((data) => {
               window.localStorage.setItem('name', data.user.name);
+              window.localStorage.setItem('username', data.user.username);
             });
             window.location.assign('/home');
           }

@@ -21,21 +21,26 @@ stockController.getUserStocks = (req, res, next) => {
 
 stockController.addStock = (req, res, next) => {
   // Get stock symbol from the request
-  const symbol = req.params.symbol;
+  const symbol = req.body.symbol;
+  const username = req.body.username;
+
+  console.log(symbol, username);
 
   // Call stock API to get data
   axios.get(
-    `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=${symbol}&interval=15min&apikey=${API_KEY}`,
+    `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${symbol}&apikey=${API_KEY}`,
   )
 
   // Parse data 
-  .then(res => {
+  .then(apiRes => {
     const dataPoints = [];
-    const data = res.data['Time Series (15min)'];
+    const data = apiRes.data['Time Series (Daily)'];
     for (key in data) {
       dataPoints.push({time: key, open: data[key]['1. open'], close: data[key]['4. close']});
     }
+    console.log(dataPoints[0]);
     res.locals.stockInfo = dataPoints[0];
+    next();
   });
 };
 

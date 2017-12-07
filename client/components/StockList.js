@@ -7,7 +7,7 @@ const StockList = (props) => {
   const stocks = props.stocks.map((el, ind)=> 
   <Stock  key={ind}
           symbol={el.symbol} 
-          diff={el.open - el.close} 
+          diff={(el.close - el.open).toFixed(3)} 
           open={el.open} 
           close={el.close} />);
   return (

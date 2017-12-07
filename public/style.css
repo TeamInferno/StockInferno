@@ -12,6 +12,7 @@ body {
   margin-bottom: 20px;
   padding-left: 50px;
 }
+<<<<<<< HEAD
 .App {
   text-align: center;
 }
@@ -645,3 +646,11 @@ body {
   top: 0;
   left: 0;
 }
+=======
+
+.stock a {
+  color: white;
+  float: right;
+  margin-right: 10px;
+}
+>>>>>>> 18f72a63288b634f2091688ecc6b50427e3b9fca
