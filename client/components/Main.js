@@ -8,7 +8,7 @@ const Main = (props) => (
   <div id="main">     
       <Switch>
         <Route exact path='/home' render={() => (<Portfolio stocks={props.stocks} />)} />
-        <Route path='/graph' component={Graph}/>
+        <Route path='/graph/:symbol' component={Graph}/>
       </Switch>
   </div>
 )
