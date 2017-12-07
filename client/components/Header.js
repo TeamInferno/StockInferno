@@ -12,7 +12,7 @@ const Header = (props) => (
     </Row>
     <Row>
     <Col s={9}>
-        <Search />
+        <Search addStock={props.addStock} />
       </Col>
       <Col s={3}>
         <Profile user={props.user}/>
