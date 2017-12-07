@@ -12,3 +12,9 @@ body {
   margin-bottom: 20px;
   padding-left: 50px;
 }
+
+.stock a {
+  color: white;
+  float: right;
+  margin-right: 10px;
+}
